@@ -4,7 +4,7 @@ defmodule Memkash.Serialization do
   defmodule Header do
     defstruct magic: 0, opcode: 0, key_length: 0, extras_length: 0, status: 0, total_body_length: 0, cas: 0
     @length 24
-    def length, do: @length
+    def length(), do: @length
   end
 
   def encode_request(header, key, body \\ "", extras \\ "") do

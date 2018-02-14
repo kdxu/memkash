@@ -23,6 +23,7 @@ defmodule Memkash do
     @type t :: %Request{opcode: atom, key: binary, value: any, extras: binary, cas: non_neg_integer}
   end
 
+  @spec get(binary) :: term | :not_found | {:error, atom}
   def get(key) do
     request = %Request{opcode: :get, key: key}
     [response] = multi_request([request], false)
@@ -30,17 +31,21 @@ defmodule Memkash do
     case response do
       %Response{status: :ok, value: value} ->
         :erlang.binary_to_term(value)
+
       %Response{status: :key_not_found} ->
         :not_found
+
       %Response{status: status} ->
         {:error, status}
     end
   end
 
+  @spec set(binary, any, map) :: :ok | {:error, atom}
   def set(key, value, opts \\ %{}) do
     case do_store(:set, key, value, opts) do
       %Response{status: :ok} ->
         :ok
+
       %Response{status: status} ->
         {:error, status}
     end
@@ -201,10 +206,10 @@ defmodule Memkash do
   end
 
   defp do_incr_decr(opcode, key, amount, opts) do
-    initial_value = Map.get(opts, :initial_value, 0)
+    default = Map.get(opts, :default, 0)
     expires = Map.get(opts, :expires, 0)
 
-    extras = <<amount::size(64), initial_value::size(64), expires::size(32)>>
+    extras = <<amount::size(64), default::size(64), expires::size(32)>>
 
     request = %Request{opcode: opcode, key: key, extras: extras}
     [response] = multi_request([request], false)

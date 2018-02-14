@@ -190,6 +190,7 @@ defmodule Memkash.Worker do
   defp receive_body(socket, total_body_length, timeout) when total_body_length > 0 do
     :gen_tcp.recv(socket, total_body_length, timeout)
   end
+
   defp receive_body(_socket, 0, _timeout), do: {:ok, ""}
 
   defp send_and_receive(socket, bytes, timeout) do
