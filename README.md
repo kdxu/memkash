@@ -6,7 +6,8 @@ A simple memcached protocol client inspired by [EchoTeam/mcd](https://github.com
 
 ```elixir:config/config.ex
 config(:memkash,
-  memd_expires_in: 20000
+  memd_expires_in: 20000,
+  memd_timeout: 1000,
   memd_host: "localhost",
   memd_port: 11121,
   ...

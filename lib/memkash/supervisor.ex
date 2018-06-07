@@ -28,7 +28,7 @@ defmodule Memkash.Supervisor do
       username: Application.get_env(:memkash, :memd_username, @default_username),
       password: Application.get_env(:memkash, :memd_password, @default_password),
       opts: Application.get_env(:memkash, :socket_opts, @default_socket_opts),
-      timeout: @default_timeout
+      timeout: Application.get_env(:memkash, :memd_timeout, @default_timeout)
     ]
 
     poolboy_sup = :poolboy.child_spec(Memkash.Pool.Supervisor, pool_args, worker_args)
