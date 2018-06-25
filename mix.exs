@@ -21,8 +21,8 @@ defmodule Memkash.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:connection, "~> 1.0"},
-      {:poolboy, "~> 1.5"}
+      {:connection, "~> 1.0.4"},
+      {:poolboy, "~> 1.5.1"}
     ]
   end
 end

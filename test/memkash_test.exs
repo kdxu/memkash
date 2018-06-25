@@ -1,5 +1,6 @@
 defmodule MemkashTest do
   use ExUnit.Case
+
   setup do
     {:ok, _pid} = Memkash.Supervisor.start_link()
     :ok
@@ -8,7 +9,7 @@ defmodule MemkashTest do
   test "set no value" do
     Memkash.flush()
     key = ["hoge", "fuga"]
-    :not_found =  Memkash.get(key)
+    :not_found = Memkash.get(key)
   end
 
   test "set/get" do
@@ -31,8 +32,8 @@ defmodule MemkashTest do
     key = ["hoge", "fuga"]
     value = "nyan"
     :ok = Memkash.set(key, value, %{expires: 1})
-    "nyan" =  Memkash.get(key)
+    "nyan" = Memkash.get(key)
     :timer.sleep(2000)
-    :not_found =  Memkash.get(key)
+    :not_found = Memkash.get(key)
   end
 end
