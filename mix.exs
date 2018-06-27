@@ -36,6 +36,7 @@ defmodule Memkash.MixProject do
     [
       {:connection, "~> 1.0.4"},
       {:poolboy, "~> 1.5.1"},
+      {:env, "~> 0.2.0"},
       {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false},
     ]
   end

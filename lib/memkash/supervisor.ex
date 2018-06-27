@@ -17,18 +17,18 @@ defmodule Memkash.Supervisor do
     pool_args = [
       name: {:local, Memkash.Pool},
       worker_module: Memkash.Worker,
-      size: Application.get_env(:memkash, :pool_size, @default_pool_size),
+      size: Env.get(:memkash, :pool_size, @default_pool_size),
       max_overflow: 20
     ]
 
     worker_args = [
-      host: Application.get_env(:memkash, :memd_host, @default_host),
-      port: Application.get_env(:memkash, :memd_port, @default_port),
-      auth_method: Application.get_env(:memkash, :memd_auth_method, @default_auth_method),
-      username: Application.get_env(:memkash, :memd_username, @default_username),
-      password: Application.get_env(:memkash, :memd_password, @default_password),
-      opts: Application.get_env(:memkash, :socket_opts, @default_socket_opts),
-      timeout: Application.get_env(:memkash, :memd_timeout, @default_timeout)
+      host: Env.get(:memkash, :memd_host, @default_host),
+      port: Env.get(:memkash, :memd_port, @default_port),
+      auth_method: Env.get(:memkash, :memd_auth_method, @default_auth_method),
+      username: Env.get(:memkash, :memd_username, @default_username),
+      password: Env.get(:memkash, :memd_password, @default_password),
+      opts: Env.get(:memkash, :socket_opts, @default_socket_opts),
+      timeout: Env.get(:memkash, :memd_timeout, @default_timeout)
     ]
 
     poolboy_sup = :poolboy.child_spec(Memkash.Pool.Supervisor, pool_args, worker_args)
