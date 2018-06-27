@@ -4,7 +4,7 @@ defmodule Memkash.MixProject do
   def project() do
     [
       app: :memkash,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       description: description(),
@@ -37,7 +37,7 @@ defmodule Memkash.MixProject do
       {:connection, "~> 1.0.4"},
       {:poolboy, "~> 1.5.1"},
       {:env, "~> 0.2.0"},
-      {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.18.3", only: [:dev], runtime: false}
     ]
   end
 end
