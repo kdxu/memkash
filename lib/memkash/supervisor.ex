@@ -1,8 +1,8 @@
 defmodule Memkash.Supervisor do
   use Supervisor
 
-  @default_host '127.0.0.1'
-  @default_port 11211
+  @default_host "127.0.0.1"
+  @default_port "11211"
   @default_auth_method :none
   @default_username ""
   @default_password ""

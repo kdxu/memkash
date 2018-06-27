@@ -36,9 +36,15 @@ defmodule Memkash.Worker do
         host_arg -> host_arg
       end
 
+    port =
+      case Keyword.get(args, :port) do
+        port_arg when is_binary(port_arg) -> String.to_integer(port_arg)
+        port_arg -> port_arg
+      end
+
     state = %State{
       host: host,
-      port: Keyword.get(args, :port),
+      port: port,
       opts: Keyword.get(args, :opts),
       timeout: Keyword.get(args, :timeout),
       auth_method: Keyword.get(args, :auth_method),
